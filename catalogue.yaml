@@ -28,6 +28,11 @@
     ansible.builtin.command: npm install
     args:
       chdir: /app
+  - name: Copy catalogue service
+    ansible.builtin.copy:
+      src: catalogue.service
+      dest: /etc/systemd/system/catalogue.service
+
   - name: reloading daemon
     ansible.builtin.systemd_service:
      daemon_reload: true

@@ -37,7 +37,7 @@
      dest: /etc/yum.repos.d/mongodb.repo
   - name: installing mongodb client
     ansible.builtin.package:
-    name: mongodb-org-shell 
+     name: mongodb-org-shell 
      state: present
   - name: get the categorirs count
     ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz --quiet --eval 'db=db.getSiblingDB("catalogue"); db.products.count()'
@@ -51,7 +51,7 @@
   
   - name: starting and enabling catalogue
     ansible.builtin.service:
-    name: catalogue
-    state: started
-    enabled: yes
+     name: catalogue
+     state: started
+     enabled: yes
      

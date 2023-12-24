@@ -39,9 +39,9 @@
     ansible.builtin.package:
      name: mongodb-org-shell 
      state: present
-  - name: get the categorirs count
-    ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz --quiet --eval 'db=db.getSiblingDB("catalogue"); db.products.count()'
-    register: product_count
+  #- name: get the categorirs count
+   # ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz --quiet --eval 'db=db.getSiblingDB("catalogue"); db.products.count()'
+    #register: product_count
   - name: print the product count
     ansible.builtin.debug:
      msg: "product count is {{product_count}}"

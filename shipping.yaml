@@ -56,7 +56,7 @@
     ansible.builtin.debug:
      msg: "schema output: {{schema}}"
   - name: load cities data
-    ansible.builtin.shell: "mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p{{mysql_password}} < /app/schema/shipping.sql"
+    ansible.builtin.shell: "mysql -h mysql.sowjanyaaws.xyz -uroot -p{{mysql_password}} < /app/schema/shipping.sql"
 
   - name: start and enable shipping
     ansible.builtin.service:

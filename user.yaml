@@ -36,8 +36,14 @@
     ansible.builtin.systemd_service:
      name: user
      daemon_reload: true
+  - name: copy user.service
+    ansible.builtin.copy: 
+     src: mongodb.repo
+     dest: /etc/yum.repos.d/mongo.repo
   - name: installing mongo-org
-    ansible.builtin.shell: dnf install mongodb-org-shell -y
+    ansible.builtin.dnf: 
+     name: mongodb-org-shell
+     state: present
   - name:  checking user data is loaded or not
     ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz --quiet --eval 'db=db.getSiblingDB("users");db.users.count()'
     register: user_count

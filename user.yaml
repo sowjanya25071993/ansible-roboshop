@@ -37,7 +37,7 @@
      name: user
      daemon_reload: true
   - name: installing mongo-org
-    ansible.builtin.command: dnf install mongodb-org-shell -y
+    ansible.builtin.shell: dnf install mongodb-org-shell -y
   - name:  checking user data is loaded or not
     ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz --quiet --eval 'db=db.getSiblingDB("users");db.users.count()'
     register: user_count

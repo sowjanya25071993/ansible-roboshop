@@ -30,8 +30,8 @@
      remote_src: yes
   - name: installing dependancies
     ansible.builtin.command: 
-     args:
-      chdir: /app
+    args:
+     chdir: /app
        
 
   - name: copy user.service

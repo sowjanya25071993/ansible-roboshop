@@ -48,7 +48,7 @@
     ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
     register: user_count
   - name: loading user data
-    ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz </app/schema/user.js
+    ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz < /app/schema/user.js
     when: user_count.stdout == "0"
   - name: starting & enabling the service
     ansible.builtin.service:

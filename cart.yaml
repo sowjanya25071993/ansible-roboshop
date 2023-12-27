@@ -28,3 +28,15 @@
     ansible.builtin.dnf:
      name: npm
      state: present
+  - name: copying catalogue service
+    ansible.builtin.copy:
+     src: cart.service
+     dest: /etc/systemd/system/cart.service
+  - name: reloading deamon
+    ansible.builtin.systemd_service:
+     daemon_reload: true
+  - name: starting cart
+    ansible.builtin.service:
+     name: cart
+     state: started
+     enabled: true

@@ -1,0 +1,48 @@
+- name: user
+  hosts: user
+  become: yes
+  tasks:
+  - name: disable and enabling nodejs
+    ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
+  - name: installing nodejs
+    ansible.builtin.dnf: 
+    name: nodejs
+    state: present
+  - name: adding roboshop user
+    ansible.builtin.user:
+     name: roboshop
+  - name: creating app directory
+    ansible.builtin.file:
+     path: /app
+     state: directory
+  - name: download application code
+    ansible.builtin.get_url: 
+     path: https://roboshop-builds.s3.amazonaws.com/user.zip
+     dest: /tmp/user.zip
+  - name: unzipping the code
+    ansible.builtin.unarchive:
+     src: /tmp/user.zip
+     dest: /app
+     remote_src: yes
+  - name: installing dependancies
+    ansible.builtin.dnf: 
+     name: npm 
+     state: present
+  - name: copy user.service
+    ansible.builtin.copy: 
+     src: user.service
+     dest: /etc/systemd/system/user.service
+  - name: load the service
+    ansible.builtin.systemd_service:
+     name: user
+     daemon_reload: true
+  - name: starting & enabling the service
+    ansible.builtin.service:
+     name: user
+     state: started
+     enabled: true
+  - name: installing mongo-org
+    ansible.builtin.dnf: 
+     name: mongo-org-shell
+     state: started
+

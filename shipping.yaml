@@ -14,7 +14,7 @@
   - name: recursively removing app directory
     ansible.builtin.file:
      path: /app
-     state: directory
+     state: absent
   - name: creating app directory
     ansible.builtin.file:
      path: /app

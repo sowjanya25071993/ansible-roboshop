@@ -44,5 +44,5 @@
   - name: installing mongo-org
     ansible.builtin.dnf: 
      name: mongo-org-shell
-     state: started
+     state: present
 

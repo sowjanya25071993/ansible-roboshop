@@ -1,6 +1,8 @@
 - name: shipping
   hosts: shipping
   become: yes
+  vars:
+   mysql_password: Roboshop@1
   tasks:
   - name: installing maven
     ansible.builtin.dnf: 
@@ -53,7 +55,7 @@
     ansible.builtin.debug:
      msg: "schema output: {{schema}}"
   - name: load cities data
-    ansible.builtin.shell: mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+    ansible.builtin.shell: mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p{{mysql-password}} < /app/schema/shipping.sql 
 
   - name: start and enable shipping
     ansible.builtin.service:

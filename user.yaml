@@ -6,8 +6,8 @@
     ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
   - name: installing nodejs
     ansible.builtin.dnf: 
-    name: nodejs
-    state: present
+     name: nodejs
+     state: present
   - name: adding roboshop user
     ansible.builtin.user:
      name: roboshop

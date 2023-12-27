@@ -13,7 +13,7 @@
      state: directory
   - name: download web content
     ansible.builtin.get_url:
-     path: https://roboshop-builds.s3.amazonaws.com/web.zip
+     url: https://roboshop-builds.s3.amazonaws.com/web.zip
      dest: /tmp
   - name: unzipping the content
     ansible.builtin.unarchive: 

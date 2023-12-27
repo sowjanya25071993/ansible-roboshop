@@ -13,12 +13,12 @@
      name: roboshop
   - name: creating app directory
     ansible.builtin.file:
-    path: /app
-    state: directory
+     path: /app
+     state: directory
   - name: downloading cart code
     ansible.builtin.get_url:
-    url: https://roboshop-builds.s3.amazonaws.com/cart.zip
-    src: /tmp
+     url: https://roboshop-builds.s3.amazonaws.com/cart.zip
+     src: /tmp
   - name: unzipping cart code
     ansible.builtin.unarchive: 
      src: /tmp/cart.zip

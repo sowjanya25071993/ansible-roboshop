@@ -14,7 +14,7 @@
   - name: recursively removing app directory
     ansible.builtin.file:
      path: /app
-     state: directory
+     state: absent
   - name: creating app directory
     ansible.builtin.file:
      path: /app
@@ -30,9 +30,9 @@
      dest: /app
      remote_src: true
   - name: installing dependancies
-    ansible.builtin.dnf:
-     name: npm
-     state: present
+    ansible.builtin.command: npm install
+    args:
+     chdir: /app
   - name: copying catalogue service
     ansible.builtin.copy:
      src: cart.service

@@ -45,7 +45,7 @@
      name: mongodb-org-shell
      state: present
   - name:  checking user data is loaded or not
-    ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz --quiet --eval 'db=db.getSiblingDB("users"); db.users.count()'
+    ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz --quiet --eval 'db=db.getSiblingDB("users") ; db.users.count()'
     register: user_count
   - name: loading user data
     ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz </app/schema/user.js

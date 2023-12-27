@@ -36,13 +36,18 @@
     ansible.builtin.systemd_service:
      name: user
      daemon_reload: true
+  - name: installing mongo-org
+    ansible.builtin.package: 
+     name: mongo-org-shell
+     state: present
+  - name:  checking user data is loaded or not
+    ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz --quiet --eval 'db=db.getSiblingDB("users");db.users.count()'
+    register: user_count
+  - name: loading user data
+    ansible.builtin.command: mongo --host mongodb.sowjanyaaws.xyz </app/schema/user.js
+    when: user_count != "1"
   - name: starting & enabling the service
     ansible.builtin.service:
      name: user
      state: started
      enabled: true
-  - name: installing mongo-org
-    ansible.builtin.dnf: 
-     name: mongo-org-shell
-     state: present
-

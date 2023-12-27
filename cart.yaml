@@ -24,3 +24,7 @@
      src: /tmp/cart.zip
      dest: /app
      remote_src: true
+  - name: installing dependancies
+    ansible.builtin.dnf:
+     name: npm
+     state: present

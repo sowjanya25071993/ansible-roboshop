@@ -37,7 +37,7 @@
      name: user
      daemon_reload: true
   - name: installing mongo-org
-    ansible.builtin.package: 
+    ansible.builtin.dnf: 
      name: mongodb-org-shell
      state: present
   - name:  checking user data is loaded or not
